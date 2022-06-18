@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const CurrencyInput: FC<Props> = ({ value, onChange }) => {
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, valueAsNumber } = event.target;
     if (!isNaN(valueAsNumber)) onChange(valueAsNumber);
     if (value === '') onChange('');
