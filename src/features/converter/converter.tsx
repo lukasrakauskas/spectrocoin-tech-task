@@ -1,4 +1,3 @@
-import { formatCurrency } from 'utils/formatter';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Currency } from 'features/converter/types';
