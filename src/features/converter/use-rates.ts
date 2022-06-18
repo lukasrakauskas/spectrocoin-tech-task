@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import { Currency } from 'features/converter/types';
 import { useMemo } from 'react';
+import { BASE_URL } from 'utils/constants';
 
 const ONE_MINUTE = 60 * 1000;
 
@@ -27,10 +28,14 @@ export interface Rates<Currency> {
 export type RatesByCurrency = Partial<Record<Currency, Rates<Currency>>>;
 
 export const useRate = (currency: Currency) => {
-  return useSWR<Rates<Currency>>(`/scapi/ticker/${currency}/BTC`, fetcher, {
-    refreshInterval: ONE_MINUTE,
-    revalidateOnFocus: false,
-  });
+  return useSWR<Rates<Currency>>(
+    `${BASE_URL}/scapi/ticker/${currency}/BTC`,
+    fetcher,
+    {
+      refreshInterval: ONE_MINUTE,
+      revalidateOnFocus: false,
+    },
+  );
 };
 
 export const useRates = () => {
