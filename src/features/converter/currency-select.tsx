@@ -70,7 +70,10 @@ const Select = styled.select`
   font-size: 1rem;
   font-weight: lighter;
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid #666;
   padding: 0.5rem;
   margin-right: 1rem;
+  background-color: transparent;
+  color: #222;
 `;

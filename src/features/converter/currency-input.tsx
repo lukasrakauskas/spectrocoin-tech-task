@@ -25,6 +25,9 @@ export const CurrencyInput: FC<Props> = ({ value, onChange }) => {
         value={value}
         onChange={handleChange}
         data-testid="input"
+        min="0"
+        inputMode="decimal"
+        pattern="[0-9]+([\.,][0-9]+)?"
       />
     </Container>
   );
@@ -48,6 +51,7 @@ const Input = styled.input`
   font-size: 2rem;
   font-weight: lighter;
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid #666;
   padding: 0.5rem;
   width: 100%;
