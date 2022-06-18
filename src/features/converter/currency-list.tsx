@@ -25,16 +25,15 @@ export const CurrencyList: FC<Props> = ({
       let formattedAmount = 'Loading...';
 
       if (rates) {
-        const rate = rates?.last ?? 0;
-        const amount = (value || 0) * rate;
+        const amount = (value || 0) * rates.last;
         formattedAmount = formatCurrency(amount, currency);
       }
 
       return (
         <ConvertedCurrency key={currency}>
           <CurrencyLabel>{currency} </CurrencyLabel>
-          <LightText>{formattedAmount}</LightText>
-          <Button onClick={() => onClickRemove(currency)}>
+          <LightText data-testid="amount">{formattedAmount}</LightText>
+          <Button onClick={() => onClickRemove(currency)} data-testid="remove">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

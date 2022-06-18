@@ -24,14 +24,12 @@ export const Converter = () => {
     }
   };
 
-  const handleSelectCurrency: React.ChangeEventHandler<
-    HTMLSelectElement
-  > = event => {
-    setSelectedCurrency(event.target.value as Currency);
+  const handleSelectCurrency = (currency: Currency) => {
+    setSelectedCurrency(currency);
   };
 
   const notSelectedCurrencies = Object.values(Currency).filter(
-    c => !currencies.includes(c),
+    currency => !currencies.includes(currency),
   );
 
   return (

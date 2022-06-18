@@ -7,6 +7,12 @@ interface Props {
 }
 
 export const CurrencyInput: FC<Props> = ({ value, onChange }) => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, valueAsNumber } = event.target;
+    if (!isNaN(valueAsNumber)) onChange(valueAsNumber);
+    if (value === '') onChange('');
+  };
+
   return (
     <Container>
       <CurrencyLabel as="label" htmlFor="btc">
@@ -17,10 +23,8 @@ export const CurrencyInput: FC<Props> = ({ value, onChange }) => {
         id="btc"
         name="btc"
         value={value}
-        onChange={event => {
-          const value = event.target.valueAsNumber;
-          onChange(isNaN(value) ? '' : value);
-        }}
+        onChange={handleChange}
+        data-testid="input"
       />
     </Container>
   );

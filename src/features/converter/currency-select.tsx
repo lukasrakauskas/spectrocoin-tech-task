@@ -6,31 +6,40 @@ import { Currency } from './types';
 interface Props {
   selectedCurrency: Currency | '';
   handleAddCurrency: () => void;
-  handleSelectCurrency: React.ChangeEventHandler<HTMLSelectElement>;
+  handleSelectCurrency: (currency: Currency) => void;
   notSelectedCurrencies: Currency[];
 }
 
-export const CurrencySelect: FC<Props> = props => {
+export const CurrencySelect: FC<Props> = ({
+  selectedCurrency,
+  handleAddCurrency,
+  handleSelectCurrency,
+  notSelectedCurrencies,
+}) => {
+  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    handleSelectCurrency(event.target.value as Currency);
+  };
+
   return (
     <Wrapper>
       <Select
         name="currencies"
-        value={props.selectedCurrency ?? undefined}
-        onChange={props.handleSelectCurrency}
+        value={selectedCurrency}
+        onChange={handleSelect}
+        data-testid="select"
       >
         <option disabled value="">
           Add currency
         </option>
-        {props.notSelectedCurrencies.map(currency => (
+        {notSelectedCurrencies.map(currency => (
           <option key={currency} value={currency}>
             {currency}
           </option>
         ))}
       </Select>
-      <Button onClick={props.handleAddCurrency}>
+      <Button onClick={handleAddCurrency} data-testid="add">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
